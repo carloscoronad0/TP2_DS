@@ -32,3 +32,5 @@ isSubscriberAlreadyCreated()
 
 	return 0
 }
+
+createSubscribers $1 $2 $3 $4
