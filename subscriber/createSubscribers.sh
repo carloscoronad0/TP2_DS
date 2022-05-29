@@ -13,9 +13,9 @@ createSubscribers()
 		isSubscriberAlreadyCreated $CONTAINERNAME
 
 		# Is the container already created
-		if (( $? )); then
+		if (( ! $? )); then
 			echo "Creating subscriber number $i"
-			#docker run -it -e "HOST=$1" -e "PORT=$2" -e "TOPIC=$3" --name $CONTAINERNAME node-mosquitto-sub
+			docker run -it -e "HOST=$1" -e "PORT=$2" -e "TOPIC=$3" --name $CONTAINERNAME -d node-mosquitto-sub
 		fi
 	done
 }
