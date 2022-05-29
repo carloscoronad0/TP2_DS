@@ -9,7 +9,7 @@ createSubscribers()
 {
 	for i in `seq 1 $4`
 	do
-		CONTAINERNAME="sub$1"
+		CONTAINERNAME="sub$i"
 		isSubscriberAlreadyCreated $CONTAINERNAME
 
 		# Is the container already created
