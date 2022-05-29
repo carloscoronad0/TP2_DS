@@ -1,19 +1,20 @@
 var mqtt = require('mqtt');
-var broker, port,topic,clientId;
-var client = mqtt.connect({ host: broker, port: port, clientId: clientId});
+const dayjs = require('dayjs')
 
-setInterval(function (){
+var broker = process.env.NOMBREBROK;
+var port = process.env.PORT;
+var topic = process.env.TOPIC;
+var containerName = process.env.HOSTNAME;
+var ip = process.env.IP
 
-  msg = {"time":""}
-  client.publish(topic, 'Hello mqtt ' + (num++),{qos:1, retain: true});
-}, 5000);
+const protocol = 'mqtt'
+const complete_host_URI = protocol.concat('://',broker, ':', port)
 
-function dateNow(){
-  var d_t = new Date(year, month, day, hour, minute, second, millisecond);
-  let year = d_t.getFullYear();
-  let month = d_t.getMonth();
-  let day = d_t.getDate();
-  let hour = d_t.getHours();
-  let minute = d_t.getMinutes();
-  let second = d_t.get
-}
+var client = mqtt.connect(complete_host_URI);
+
+client.on('connect', function () {
+  setInterval(function (){
+    msg = {"time":dayjs().format("ddd MMM DD HH:mm:ss ZZ YYYY"), "container":containerName, "ip":ip}
+    client.publish(topic, msg);
+  }, 5000);
+})
