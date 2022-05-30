@@ -14,9 +14,9 @@ var client = mqtt.connect(complete_host_URI);
 
 client.on('connect', function () {
   client.subscribe(topic);
-  
+
   setInterval(function (){
     msg = {"time":dayjs().format("ddd MMM DD HH:mm:ss ZZ YYYY"), "container":containerName, "ip":ip}
-    client.publish(topic, msg);
+    client.publish(topic, JSON.stringify(msg));
   }, 5000);
 })
