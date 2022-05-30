@@ -10,7 +10,11 @@ var ip = process.env.IP
 const protocol = 'mqtt'
 const complete_host_URI = protocol.concat('://',broker, ':', port)
 
+console.log("soy IP")
 console.log(ip)
+console.log("Soy command")
+console.log(process.env)
+
 
 var client = mqtt.connect(complete_host_URI);
 
