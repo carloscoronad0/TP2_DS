@@ -1,10 +1,12 @@
 var mqtt = require('mqtt');
 const dayjs = require('dayjs')
+const { exec } = require("child_process");
 
 var broker = process.env.NOMBREBROK;
 var port = process.env.PORT;
 var topic = process.env.TOPIC;
 var containerName = process.env.HOSTNAME;
+
 var ip = process.env.IP
 
 const protocol = 'mqtt'

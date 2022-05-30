@@ -3,4 +3,5 @@ WORKDIR /usr/src/app
 COPY Project .
 RUN npm install
 EXPOSE 1883
-CMD ["IP=$(hostname -I)","node", "./app.js"]
+RUN export IP=$(hostname -I)
+CMD ["node", "./app.js"]
