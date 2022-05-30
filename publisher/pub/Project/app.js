@@ -8,6 +8,18 @@ var topic = process.env.TOPIC;
 var containerName = process.env.HOSTNAME;
 
 var ip = process.env.IP
+exec("hostname -I",(error, stdout, stderr) => {
+  if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+  }
+  if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+  }
+  console.log(`stdout: ${stdout}`);
+  ip = stdout
+});
 
 const protocol = 'mqtt'
 const complete_host_URI = protocol.concat('://',broker, ':', port)
